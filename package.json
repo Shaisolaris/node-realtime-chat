@@ -1,7 +1,7 @@
 {
   "name": "node-realtime-chat",
   "version": "1.0.0",
-  "description": "Production-ready real-time chat server — Node.js, TypeScript, Socket.io, Redis pub/sub, JWT auth, rooms, presence, message history",
+  "description": "Production-ready real-time chat server \u2014 Node.js, TypeScript, Socket.io, Redis pub/sub, JWT auth, rooms, presence, message history",
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
@@ -18,7 +18,7 @@
     "redis",
     "websocket"
   ],
-  "author": "Shai Ali",
+  "author": "Solaris Technologies",
   "license": "MIT",
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
