@@ -1,3 +1,4 @@
+import { DEMO_MODE } from "./demo-data";
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
