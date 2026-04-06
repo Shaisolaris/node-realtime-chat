@@ -18,7 +18,7 @@
     "redis",
     "websocket"
   ],
-  "author": "Solaris Technologies",
+  "author": "Shai A",
   "license": "MIT",
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
