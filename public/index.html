@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head><title>Chat Demo</title>
+<style>body{font-family:system-ui;max-width:600px;margin:40px auto;padding:20px}#messages{height:400px;overflow-y:auto;border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:16px}
+.msg{padding:8px 12px;margin:4px 0;border-radius:8px;max-width:80%}.msg.self{background:#007bff;color:#fff;margin-left:auto;text-align:right}.msg.other{background:#f0f0f0}
+input,button{padding:10px;border-radius:6px;border:1px solid #ddd}input{flex:1}button{background:#007bff;color:#fff;border:none;cursor:pointer}
+.form{display:flex;gap:8px}h1{font-size:24px}.status{font-size:12px;color:#888;margin-bottom:16px}</style>
+<script src="/socket.io/socket.io.js"></script></head>
+<body>
+<h1>💬 Real-time Chat</h1>
+<div class="status" id="status">Connecting...</div>
+<div id="messages"></div>
+<div class="form"><input id="input" placeholder="Type a message..." autocomplete="off"/><button onclick="send()">Send</button></div>
+<script>
+const socket = io();
+const user = 'User_' + Math.random().toString(36).substr(2, 4);
+document.getElementById('status').textContent = 'Connected as ' + user;
+socket.emit('join', { room: 'general', username: user });
+socket.on('message', (msg) => {
+  const div = document.createElement('div');
+  div.className = 'msg ' + (msg.username === user ? 'self' : 'other');
+  div.innerHTML = '<strong>' + msg.username + '</strong><br>' + msg.content;
+  document.getElementById('messages').appendChild(div);
+  document.getElementById('messages').scrollTop = 99999;
+});
+function send() {
+  const input = document.getElementById('input');
+  if (input.value.trim()) { socket.emit('message', { room: 'general', content: input.value }); input.value = ''; }
+}
+document.getElementById('input').addEventListener('keypress', (e) => { if (e.key === 'Enter') send(); });
+</script></body></html>
