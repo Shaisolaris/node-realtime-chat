@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
-echo "🚀 Setting up node-realtime-chat..."
-command -v node >/dev/null 2>&1 || { echo "❌ Node.js 18+ required"; exit 1; }
-echo "📦 Installing dependencies..."
+echo "🚀 Setting up node-realtime-chat"
 npm install
-if [ ! -f .env ]; then
-  cp .env.example .env 2>/dev/null || echo "⚠️  Create .env from .env.example"
-fi
-echo ""; echo "✅ Setup complete! Run: npm run dev"
+docker compose up -d 2>/dev/null || echo "⚠️ Redis not started (optional — works without it for single instance)"
+echo ""
+echo "✅ Setup complete!"
+echo "Run: npm run dev"
+echo "Open: http://localhost:3000"
+echo "Open 2 browser tabs to test real-time chat"
